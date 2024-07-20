@@ -39,6 +39,15 @@ function FamilyMember(props) {
     <>
       <p>FamilyMember: {receivedData.state.user}</p>
       {/* <p>State: {receivedData.state.}</p> */}
+      <Link to="normal">normal</Link>
+      <Link to="../prev">prev 1</Link>
+      <Link to="../../prev">prev 2</Link>
+      <Link to="path" relative="path">
+        path
+      </Link>
+      <Link to="path" relative="route">
+        route
+      </Link>
     </>
   );
 }
@@ -56,6 +65,9 @@ function FamilyMembers() {
   useEffect(() => {
     console.log("useEffect called");
     setUsers(storage.current.users);
+    return () => {
+      console.log("Unmount component");
+    };
   });
   console.log("useLocation in family members::>>", useLocation());
   return (
@@ -86,9 +98,9 @@ function Main() {
 function Navegation() {
   return (
     <>
-      <Link to="/familyMembers">Family Members</Link>
-      <br />
       <Link to="/">Main page</Link>
+      <br />
+      <Link to="/familyMembers">Family Members</Link>
     </>
   );
 }
